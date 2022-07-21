@@ -10,6 +10,13 @@ import { Auth0Login } from "../../components/authentication/auth0-login"
 import { FirebaseLogin } from "../../components/authentication/firebase-login"
 import { JWTLogin } from "../../components/authentication/jwt-login"
 
+const platformIcons = {
+  Amplify: "/static/icons/amplify.svg",
+  Auth0: "/static/icons/auth0.svg",
+  Firebase: "/static/icons/firebase.svg",
+  JWT: "/static/icons/jwt.svg",
+}
+
 const LoginPage: BlitzPage = () => {
   const router = useRouter()
   const platform = "JWT"
@@ -58,12 +65,15 @@ const LoginPage: BlitzPage = () => {
                 flexGrow: 0,
                 flexShrink: 0,
               },
+              display: "none",
             }}
           >
-            <Typography color="textSecondary" variant="caption">
-              The app authenticates via {"platform"}
-            </Typography>
-            <img alt="Auth platform" src={"platformIcons[platform]"} />
+            <div style={{ display: "none" }}>
+              <Typography color="textSecondary" variant="caption">
+                The app authenticates via {"platform"}
+              </Typography>
+            </div>
+            <img alt="Auth platform" src={platformIcons[platform]} />
           </Box>
           <Card elevation={16} sx={{ p: 4 }}>
             <Box

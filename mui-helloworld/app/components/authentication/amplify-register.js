@@ -1,14 +1,14 @@
-import { useRouter } from "next/router";
-import * as Yup from "yup";
-import { useFormik } from "formik";
-import { Box, Button, Checkbox, FormHelperText, Link, TextField, Typography } from "@mui/material";
-import { useAuth } from "../../hooks/use-auth";
-import { useMounted } from "../../hooks/use-mounted";
+import { useRouter } from "next/router"
+import * as Yup from "yup"
+import { useFormik } from "formik"
+import { Box, Button, Checkbox, FormHelperText, Link, TextField, Typography } from "@mui/material"
+import { useAuth } from "../../hooks/use-auth"
+import { useMounted } from "../../hooks/use-mounted"
 
 export const AmplifyRegister = (props) => {
-  const isMounted = useMounted();
-  const router = useRouter();
-  const { register } = useAuth();
+  const isMounted = useMounted()
+  const router = useRouter()
+  const { register } = useAuth()
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -23,22 +23,22 @@ export const AmplifyRegister = (props) => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await register(values.email, values.password);
+        await register(values.email, values.password)
 
         if (isMounted()) {
-          router.push("/authentication/verify-code").catch(console.error);
+          router.push("/authentication/verify-code").catch(console.error)
         }
       } catch (err) {
-        console.error(err);
+        console.error(err)
 
         if (isMounted()) {
-          helpers.setStatus({ success: false });
-          helpers.setErrors({ submit: err.message });
-          helpers.setSubmitting(false);
+          helpers.setStatus({ success: false })
+          helpers.setErrors({ submit: err.message })
+          helpers.setSubmitting(false)
         }
       }
     },
-  });
+  })
 
   return (
     <form noValidate onSubmit={formik.handleSubmit} {...props}>
@@ -91,10 +91,16 @@ export const AmplifyRegister = (props) => {
         </Box>
       )}
       <Box sx={{ mt: 2 }}>
-        <Button disabled={formik.isSubmitting} fullWidth size="large" type="submit" variant="contained">
+        <Button
+          disabled={formik.isSubmitting}
+          fullWidth
+          size="large"
+          type="submit"
+          variant="contained"
+        >
           Register
         </Button>
       </Box>
     </form>
-  );
-};
+  )
+}
