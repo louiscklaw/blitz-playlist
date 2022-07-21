@@ -4,7 +4,9 @@ import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
-import { Button } from "@mui/material"
+import { Button, Typography } from "@mui/material"
+
+import { FaGlobeAmericas } from "react-icons/fa"
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -36,6 +38,13 @@ const UserInfo = () => {
   } else {
     return (
       <>
+        <Link href={Routes.Dashboard()}>
+          <Typography variant="h6">Dashboard</Typography>
+        </Link>
+        <Button variant="outlined" startIcon={<FaGlobeAmericas />}>
+          Delete
+        </Button>
+
         <Link href={Routes.SignupPage()}>
           <a className="button small">
             <strong>Sign Up</strong>
