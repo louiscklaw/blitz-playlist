@@ -1,8 +1,8 @@
-import { render } from "test/utils";
-import Home from "./index";
-import { useCurrentUser } from "app/core/hooks/useCurrentUser";
-jest.mock("app/core/hooks/useCurrentUser");
-const mockUseCurrentUser = useCurrentUser;
+import { render } from "test/utils"
+import Home from "./index"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+jest.mock("app/core/hooks/useCurrentUser")
+const mockUseCurrentUser = useCurrentUser
 test.skip("renders blitz documentation link", () => {
   // This is an example of how to ensure a specific item is in the document
   // But it's disabled by default (by test.skip) so the test doesn't fail
@@ -12,11 +12,9 @@ test.skip("renders blitz documentation link", () => {
     id: 1,
     name: "User",
     email: "user@email.com",
-    role: "user"
-  });
-  const {
-    getByText
-  } = render(<Home />);
-  const linkElement = getByText(/Documentation/i);
-  expect(linkElement).toBeInTheDocument();
-});
+    role: "user",
+  })
+  const { getByText } = render(<Home />)
+  const linkElement = getByText(/Documentation/i)
+  expect(linkElement).toBeInTheDocument()
+})

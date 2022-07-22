@@ -8,11 +8,6 @@ import { Button, Typography } from "@mui/material"
 
 import { FaGlobeAmericas } from "react-icons/fa"
 
-/*
- * This file is just for a pleasant getting started page for your new app.
- * You can delete everything in here and start from scratch if you like.
- */
-
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
@@ -39,11 +34,10 @@ const UserInfo = () => {
     return (
       <>
         <Link href={Routes.Dashboard()}>
-          <Typography variant="h6">Dashboard</Typography>
+          <Button variant="outlined" startIcon={<FaGlobeAmericas />}>
+            Delete
+          </Button>
         </Link>
-        <Button variant="outlined" startIcon={<FaGlobeAmericas />}>
-          Delete
-        </Button>
 
         <Link href={Routes.SignupPage()}>
           <a className="button small">

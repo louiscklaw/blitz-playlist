@@ -1,3 +1,3 @@
 export default async function logout(_, ctx) {
-  return await ctx.session.$revoke();
+  return await ctx.session.$revoke()
 }
