@@ -1,58 +1,51 @@
-import { useRouter } from 'next/router';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
-import { Alert, Box, Button, FormHelperText, TextField } from '@mui/material';
-import { useAuth } from '../../hooks/use-auth';
-import { useMounted } from '../../hooks/use-mounted';
+import { useRouter } from 'next/router'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
+import { Alert, Box, Button, FormHelperText, TextField } from '@mui/material'
+import { useAuth } from '../../hooks/use-auth'
+import { useMounted } from '../../hooks/use-mounted'
 
-export const AmplifyLogin = (props) => {
-  const isMounted = useMounted();
-  const router = useRouter();
-  const { login } = useAuth();
+export const AmplifyLogin = props => {
+  const isMounted = useMounted()
+  const router = useRouter()
+  const { login } = useAuth()
   const formik = useFormik({
     initialValues: {
       email: 'demo@devias.io',
       password: 'Password123!',
-      submit: null
+      submit: null,
     },
     validationSchema: Yup.object({
-      email: Yup
-        .string()
-        .email('Must be a valid email')
-        .max(255)
-        .required('Email is required')
+      email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await login(values.email, values.password);
+        await login(values.email, values.password)
 
         if (isMounted()) {
-          const returnUrl = router.query.returnUrl || '/dashboard';
-          router.push(returnUrl).catch(console.error);
+          const returnUrl = router.query.returnUrl || '/dashboard'
+          router.push(returnUrl).catch(console.error)
         }
       } catch (err) {
-        console.error(err);
+        console.error(err)
 
         if (isMounted()) {
           if (err.code === 'UserNotConfirmedException') {
-            sessionStorage.setItem('username', values.email);
-            router.push('/authentication/verify-code').catch(console.error);
-            return;
+            sessionStorage.setItem('username', values.email)
+            router.push('/authentication/verify-code').catch(console.error)
+            return
           }
 
-          helpers.setStatus({ success: false });
-          helpers.setErrors({ submit: err.message });
-          helpers.setSubmitting(false);
+          helpers.setStatus({ success: false })
+          helpers.setErrors({ submit: err.message })
+          helpers.setSubmitting(false)
         }
       }
-    }
-  });
+    },
+  })
 
   return (
-    <form
-      noValidate
-      onSubmit={formik.handleSubmit}
-      {...props}>
+    <form noValidate onSubmit={formik.handleSubmit} {...props}>
       <TextField
         autoFocus
         error={Boolean(formik.touched.email && formik.errors.email)}
@@ -80,35 +73,21 @@ export const AmplifyLogin = (props) => {
       />
       {formik.errors.submit && (
         <Box sx={{ mt: 3 }}>
-          <FormHelperText error>
-            {formik.errors.submit}
-          </FormHelperText>
+          <FormHelperText error>{formik.errors.submit}</FormHelperText>
         </Box>
       )}
       <Box sx={{ mt: 2 }}>
-        <Button
-          disabled={formik.isSubmitting}
-          fullWidth
-          size="large"
-          type="submit"
-          variant="contained"
-        >
+        <Button disabled={formik.isSubmitting} fullWidth size="large" type="submit" variant="contained">
           Log In
         </Button>
       </Box>
       <Box sx={{ mt: 3 }}>
         <Alert severity="info">
           <div>
-            You can use
-            {' '}
-            <b>demo@devias.io</b>
-            {' '}
-            and password
-            {' '}
-            <b>Password123!</b>
+            You can use <b>demo@devias.io</b> and password <b>Password123!</b>
           </div>
         </Alert>
       </Box>
     </form>
-  );
-};
+  )
+}

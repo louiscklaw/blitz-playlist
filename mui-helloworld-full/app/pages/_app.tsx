@@ -6,6 +6,9 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import theme from 'app/core/styles/theme'
 import createEmotionCache from 'app/core/utils/createEmotionCache'
+
+import { Toaster } from 'react-hot-toast'
+
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache
 }

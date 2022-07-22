@@ -1,61 +1,61 @@
-import { createContext, useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { createContext, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
 const initialSettings = {
-  direction: "ltr",
+  direction: 'ltr',
   responsiveFontSizes: true,
-  theme: "light",
-};
+  theme: 'light',
+}
 
 export const restoreSettings = () => {
-  let settings = null;
+  let settings = null
 
   try {
-    const storedData = globalThis.localStorage.getItem("settings");
+    const storedData = globalThis.localStorage.getItem('settings')
 
     if (storedData) {
-      settings = JSON.parse(storedData);
+      settings = JSON.parse(storedData)
     } else {
       settings = {
-        direction: "ltr",
+        direction: 'ltr',
         responsiveFontSizes: true,
-        theme: globalThis.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
-      };
+        theme: globalThis.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+      }
     }
   } catch (err) {
-    console.error(err);
+    console.error(err)
     // If stored data is not a strigified JSON this will fail,
     // that's why we catch the error
   }
 
-  return settings;
-};
+  return settings
+}
 
-export const storeSettings = (settings) => {
-  globalThis.localStorage.setItem("settings", JSON.stringify(settings));
-};
+export const storeSettings = settings => {
+  globalThis.localStorage.setItem('settings', JSON.stringify(settings))
+}
 
 export const SettingsContext = createContext({
   settings: initialSettings,
   saveSettings: () => {},
-});
+})
 
-export const SettingsProvider = (props) => {
-  const { children } = props;
-  const [settings, setSettings] = useState(initialSettings);
+export const SettingsProvider = props => {
+  const { children } = props
+  const [settings, setSettings] = useState(initialSettings)
 
   useEffect(() => {
-    const restoredSettings = restoreSettings();
+    const restoredSettings = restoreSettings()
 
     if (restoredSettings) {
-      setSettings(restoredSettings);
+      setSettings(restoredSettings)
     }
-  }, []);
+  }, [])
 
-  const saveSettings = (updatedSettings) => {
-    setSettings(updatedSettings);
-    storeSettings(updatedSettings);
-  };
+  const saveSettings = updatedSettings => {
+    setSettings(updatedSettings)
+    storeSettings(updatedSettings)
+  }
 
   return (
     <SettingsContext.Provider
@@ -66,11 +66,11 @@ export const SettingsProvider = (props) => {
     >
       {children}
     </SettingsContext.Provider>
-  );
-};
+  )
+}
 
 SettingsProvider.propTypes = {
   children: PropTypes.node.isRequired,
-};
+}
 
-export const SettingsConsumer = SettingsContext.Consumer;
+export const SettingsConsumer = SettingsContext.Consumer

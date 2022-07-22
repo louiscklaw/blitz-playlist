@@ -1,4 +1,4 @@
-import { useRouter, BlitzPage, Head, Link } from 'blitz'
+import { useRouter, BlitzPage, Routes, Head, Link } from 'blitz'
 import Layout from 'app/core/layouts/Layout'
 import { LoginForm } from 'app/auth/components/LoginForm'
 import { Box, Card, Container, Divider, Typography } from '@mui/material'
@@ -15,7 +15,7 @@ const platformIcons = {
 const LoginPage: BlitzPage = () => {
   const router = useRouter()
   const platform = 'JWT'
-  const disableGuard = true
+  const { disableGuard } = router.query
 
   return (
     <div>
@@ -96,7 +96,7 @@ const LoginPage: BlitzPage = () => {
             </Box>
             <Divider sx={{ my: 3 }} />
             <div>
-              <Link href={disableGuard ? `/authentication/register?disableGuard=${disableGuard}` : '/authentication/register'} passHref>
+              <Link href={disableGuard ? `/authentication/register?disableGuard=${disableGuard}` : Routes.SignupPage()} passHref>
                 <Link color="textSecondary" variant="body2">
                   Create new account
                 </Link>
