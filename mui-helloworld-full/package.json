@@ -1,0 +1,87 @@
+{
+  "name": "mui-helloworld-full",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "blitz dev",
+    "build": "blitz build",
+    "start": "blitz start",
+    "studio": "blitz prisma studio",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "test": "jest",
+    "format": "prettier --loglevel warn --write \"**/*.{js,css,html,jsx,tsx,ts,json}\"",
+    "test:watch": "jest --watch",
+    "gitSync": "git fetch --all && git stash && git pull --all && git stash pop || true",
+    "gitUpdate": "git add . && git commit -m \"update mui-helloworld-full,\" && yarn gitSync && git push"
+  },
+  "prisma": {
+    "schema": "db/schema.prisma"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "bracketSpacing": true,
+    "htmlWhitespaceSensitivity": "strict",
+    "insertPragma": false,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": false,
+    "printWidth": 160,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "useTabs": false,
+    "overrides": [
+      {
+        "files": [
+          "*.html"
+        ],
+        "options": {
+          "parser": "angular"
+        }
+      },
+      {
+        "files": [
+          "*.{j,t}sx",
+          "*.{j,t}s"
+        ],
+        "options": {
+          "printWidth": 160
+        }
+      }
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "dependencies": {
+    "@emotion/cache": "11.x",
+    "@emotion/react": "11.x",
+    "@emotion/server": "11.x",
+    "@emotion/styled": "11.x",
+    "@mui/material": "5.x",
+    "@prisma/client": "3.16.0-integration-tmp-revert-node14.1",
+    "blitz": "0.45.5",
+    "formik": "2.2.9",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "yup": "0.32.11",
+    "zod": "3.17.10"
+  },
+  "devDependencies": {
+    "@types/preview-email": "2.0.1",
+    "@types/react": "18.0.1",
+    "eslint": "7.32.0",
+    "lint-staged": "11.3.0-beta.2",
+    "prettier": "2.7.1",
+    "prettier-plugin-prisma": "3.14.0",
+    "pretty-quick": "3.1.3",
+    "preview-email": "3.0.7",
+    "prisma": "3.16.0-integration-tmp-revert-node14.1",
+    "typescript": "~4.5"
+  },
+  "private": true
+}
