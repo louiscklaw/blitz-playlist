@@ -9,7 +9,9 @@
     "lint": "eslint --ignore-path .gitignore --ext .js .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "docker_rebuild": "docker compose up -d --build",
+    "into_docker": "docker compose exec -it test_host bash"
   },
   "prisma": {
     "schema": "db/schema.prisma"
