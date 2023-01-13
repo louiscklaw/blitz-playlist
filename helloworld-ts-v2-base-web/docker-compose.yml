@@ -1,0 +1,17 @@
+services:
+  test:
+    build:
+      context: .
+    ports:
+      - 3000:3000
+      - 5555:5555
+    user: 1000:1000
+    working_dir: /app
+    volumes:
+      - $PWD:/app
+      - node_modules:/app/node_modules
+
+    command: sleep infinity
+
+volumes:
+  node_modules:
