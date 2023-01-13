@@ -48,7 +48,6 @@ export const Project = () => {
     </>
   )
 }
-
 const ShowProjectPage = () => {
   return (
     <div>
@@ -64,9 +63,6 @@ const ShowProjectPage = () => {
     </div>
   )
 }
-
 ShowProjectPage.authenticate = true
-
 ShowProjectPage.getLayout = (page) => <Layout>{page}</Layout>
-
 export default ShowProjectPage

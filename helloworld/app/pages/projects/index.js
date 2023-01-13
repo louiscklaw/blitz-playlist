@@ -13,21 +13,18 @@ export const ProjectsList = () => {
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
   })
-
   const goToPreviousPage = () =>
     router.push({
       query: {
         page: page - 1,
       },
     })
-
   const goToNextPage = () =>
     router.push({
       query: {
         page: page + 1,
       },
     })
-
   return (
     <div>
       <ul>
@@ -53,7 +50,6 @@ export const ProjectsList = () => {
     </div>
   )
 }
-
 const ProjectsPage = () => {
   return (
     <>
@@ -75,9 +71,6 @@ const ProjectsPage = () => {
     </>
   )
 }
-
 ProjectsPage.authenticate = true
-
 ProjectsPage.getLayout = (page) => <Layout>{page}</Layout>
-
 export default ProjectsPage

@@ -2,7 +2,6 @@ import { Link, useRouter, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import createProject from "app/projects/mutations/createProject"
 import { ProjectForm, FORM_ERROR } from "app/projects/components/ProjectForm"
-
 const NewProjectPage = () => {
   const router = useRouter()
   const [createProjectMutation] = useMutation(createProject)
@@ -11,7 +10,8 @@ const NewProjectPage = () => {
       <h1>Create New Project</h1>
 
       <ProjectForm
-        submitText="Create Project" // TODO use a zod schema for form validation
+        submitText="Create Project"
+        // TODO use a zod schema for form validation
         //  - Tip: extract mutation's schema into a shared `validations.ts` file and
         //         then import and use it here
         // schema={CreateProject}
@@ -41,9 +41,6 @@ const NewProjectPage = () => {
     </div>
   )
 }
-
 NewProjectPage.authenticate = true
-
 NewProjectPage.getLayout = (page) => <Layout title={"Create New Project"}>{page}</Layout>
-
 export default NewProjectPage

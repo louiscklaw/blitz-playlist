@@ -16,7 +16,12 @@ export default resolver.pipe(
         db.project.count({
           where,
         }),
-      query: (paginateArgs) => db.project.findMany({ ...paginateArgs, where, orderBy }),
+      query: (paginateArgs) =>
+        db.project.findMany({
+          ...paginateArgs,
+          where,
+          orderBy,
+        }),
     })
     return {
       projects,

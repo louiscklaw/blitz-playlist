@@ -29,7 +29,8 @@ export const EditProject = () => {
         <pre>{JSON.stringify(project, null, 2)}</pre>
 
         <ProjectForm
-          submitText="Update Project" // TODO use a zod schema for form validation
+          submitText="Update Project"
+          // TODO use a zod schema for form validation
           //  - Tip: extract mutation's schema into a shared `validations.ts` file and
           //         then import and use it here
           // schema={UpdateProject}
@@ -58,7 +59,6 @@ export const EditProject = () => {
     </>
   )
 }
-
 const EditProjectPage = () => {
   return (
     <div>
@@ -74,9 +74,6 @@ const EditProjectPage = () => {
     </div>
   )
 }
-
 EditProjectPage.authenticate = true
-
 EditProjectPage.getLayout = (page) => <Layout>{page}</Layout>
-
 export default EditProjectPage
