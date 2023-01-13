@@ -2,22 +2,25 @@
   "name": "my-blitz-app",
   "version": "1.0.0",
   "scripts": {
+    "blitz": "blitz",
     "dev": "blitz dev",
     "build": "blitz build",
     "start": "blitz start",
     "studio": "blitz prisma studio",
-    "seed":"blitz db seed",
+    "migrate_dev": "blitz prisma migrate dev",
+    "migrate_reset": "blitz prisma migrate reset",
+    "rm_db": "rm -rf ./db/db.sqlite",
+    "seed": "blitz db seed",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "prettier --loglevel warn --write \"**/*.{js,css,html,jsx,tsx,ts,json}\"",
+    "gitSync": "git fetch --all && git pull --all ",
+    "gitUpdate": "git add . && git commit -m \"update fedora,\" && yarn gitSync && git push"
   },
   "prisma": {
     "schema": "db/schema.prisma"
-  },
-  "prettier": {
-    "semi": false,
-    "printWidth": 100
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [

@@ -1,11 +1,11 @@
-import { Suspense } from "react"
-import Link from "next/link"
-import Layout from "src/core/layouts/Layout"
-import { useCurrentUser } from "src/users/hooks/useCurrentUser"
-import logout from "src/auth/mutations/logout"
-import { useMutation } from "@blitzjs/rpc"
-import { Routes, BlitzPage } from "@blitzjs/next"
-import styles from "src/styles/Home.module.css"
+import { Suspense } from 'react';
+import Link from 'next/link';
+import Layout from 'src/core/layouts/Layout';
+import { useCurrentUser } from 'src/users/hooks/useCurrentUser';
+import logout from 'src/auth/mutations/logout';
+import { useMutation } from '@blitzjs/rpc';
+import { Routes, BlitzPage } from '@blitzjs/next';
+import styles from 'src/styles/Home.module.css';
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -13,8 +13,8 @@ import styles from "src/styles/Home.module.css"
  */
 
 const UserInfo = () => {
-  const currentUser = useCurrentUser()
-  const [logoutMutation] = useMutation(logout)
+  const currentUser = useCurrentUser();
+  const [logoutMutation] = useMutation(logout);
 
   if (currentUser) {
     return (
@@ -22,7 +22,7 @@ const UserInfo = () => {
         <button
           className={styles.button}
           onClick={async () => {
-            await logoutMutation()
+            await logoutMutation();
           }}
         >
           Logout
@@ -33,20 +33,20 @@ const UserInfo = () => {
           User role: <code>{currentUser.role}</code>
         </div>
       </>
-    )
+    );
   } else {
     return (
       <>
-        <Link href={Routes.SignupPage()} className={styles.button}>
+        <Link href={Routes.SignupPage()} className={styles.button} legacyBehavior>
           <strong>Sign Up</strong>
         </Link>
-        <Link href={Routes.LoginPage()} className={styles.loginButton}>
+        <Link href={Routes.LoginPage()} className={styles.loginButton} legacyBehavior>
           <strong>Login</strong>
         </Link>
       </>
-    )
+    );
   }
-}
+};
 
 const Home: BlitzPage = () => {
   return (
@@ -115,8 +115,8 @@ const Home: BlitzPage = () => {
                     <span>4</span>
                     <pre>
                       <code>
-                        Go to{" "}
-                        <Link href="/projects" className={styles.textLink}>
+                        Go to{' '}
+                        <Link href="/projects" className={styles.textLink} legacyBehavior>
                           /projects
                         </Link>
                       </code>
@@ -162,12 +162,7 @@ const Home: BlitzPage = () => {
                   Blitz Twitter
                   <span className={styles.arrowIcon} />
                 </a>
-                <a
-                  href="https://discord.blitzjs.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.card}
-                >
+                <a href="https://discord.blitzjs.com" target="_blank" rel="noopener noreferrer" className={styles.card}>
                   Discord Community
                   <span className={styles.arrowIcon} />
                 </a>
@@ -189,7 +184,7 @@ const Home: BlitzPage = () => {
         </footer>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -1,17 +1,17 @@
-import { Routes } from "@blitzjs/next"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { useMutation } from "@blitzjs/rpc"
-import Layout from "src/core/layouts/Layout"
-import createProject from "src/projects/mutations/createProject"
-import { ProjectForm, FORM_ERROR } from "src/projects/components/ProjectForm"
+import { Routes } from '@blitzjs/next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useMutation } from '@blitzjs/rpc';
+import Layout from 'src/core/layouts/Layout';
+import createProject from 'src/projects/mutations/createProject';
+import { ProjectForm, FORM_ERROR } from 'src/projects/components/ProjectForm';
 
 const NewProjectPage = () => {
-  const router = useRouter()
-  const [createProjectMutation] = useMutation(createProject)
+  const router = useRouter();
+  const [createProjectMutation] = useMutation(createProject);
 
   return (
-    <Layout title={"Create New Project"}>
+    <Layout title={'Create New Project'}>
       <h1>Create New Project</h1>
 
       <ProjectForm
@@ -21,15 +21,15 @@ const NewProjectPage = () => {
         //         then import and use it here
         // schema={CreateProject}
         // initialValues={{}}
-        onSubmit={async (values) => {
+        onSubmit={async values => {
           try {
-            const project = await createProjectMutation(values)
-            await router.push(Routes.ShowProjectPage({ projectId: project.id }))
+            const project = await createProjectMutation(values);
+            await router.push(Routes.ShowProjectPage({ projectId: project.id }));
           } catch (error: any) {
-            console.error(error)
+            console.error(error);
             return {
               [FORM_ERROR]: error.toString(),
-            }
+            };
           }
         }}
       />
@@ -40,9 +40,9 @@ const NewProjectPage = () => {
         </Link>
       </p>
     </Layout>
-  )
-}
+  );
+};
 
-NewProjectPage.authenticate = true
+NewProjectPage.authenticate = true;
 
-export default NewProjectPage
+export default NewProjectPage;
